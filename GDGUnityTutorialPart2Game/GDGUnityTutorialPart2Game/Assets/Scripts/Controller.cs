@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour {
 	public int player;
 	public float health;
 	public float thrust = 5;
+	public float rotationSpeed;
 	//private float brake = 3;
 	private float angularVelocity;
 	//Vector2 lookDirection = Vector2.zero;
@@ -40,7 +41,8 @@ public class Controller : MonoBehaviour {
 			/*AorD = true;
 			angularVelocity = 140;
 			rgbody.AddForce(transform.up * thrust/2);*/
-			rgbody.AddTorque (10 * Time.fixedDeltaTime);
+			//rgbody.AddTorque (10 * Time.fixedDeltaTime);
+			transform.Rotate(transform.forward * rotationSpeed * Time.fixedDeltaTime);
 		} if ((player == 1 && Input.GetKey (KeyCode.S)) || (player == 2 && Input.GetKey(KeyCode.DownArrow))) {
 			//velocity += Vector3.down * speed;
 			rgbody.AddForce(-transform.right * (thrust));
@@ -49,12 +51,13 @@ public class Controller : MonoBehaviour {
 			/*AorD = true;
 			angularVelocity = -140;
 			rgbody.AddForce(-transform.up * thrust/2);*/
-			rgbody.AddTorque (-10 * Time.fixedDeltaTime);
+			//rgbody.AddTorque (-10 * Time.fixedDeltaTime);
+			transform.Rotate(transform.forward * -rotationSpeed * Time.fixedDeltaTime);
 		} //if(Input.GetKeyDown())
 		/*if(!AorD) {
 			angularVelocity = 0;
-		}
-		rgbody.angularVelocity = angularVelocity;*/
+		}*/
+		rgbody.angularVelocity = angularVelocity;
 		/*
 		if (Input.GetMouseButtonDown (0)) {
 			//Instantiate bullet
